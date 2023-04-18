@@ -60,7 +60,7 @@ Process {
                     $newScript = [System.Text.StringBuilder]::new()
                     
                     $found=$true
-                    foreach($line in $orgHeader.Split([Environment]::NewLine)) {
+                    foreach($line in ($orgHeader -Split [Environment]::NewLine)) {
                         if ($line -eq "#>") {
                             break
                         }
@@ -77,13 +77,11 @@ Process {
                                 [void]$newScript.AppendLine($line)
                             }
                         } else {
-                            if (![string]::IsNullOrEmpty($line)) {
                                 if ($found) {
                                     [void]$newScript.AppendLine($line)
                                 } else {
                                     $found=$true
                                 }
-                            }
                         }
                     }
                     
